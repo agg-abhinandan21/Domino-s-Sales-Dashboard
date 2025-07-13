@@ -1,0 +1,30 @@
+For creating our custom time
+
+let
+    hour = Time.Hour([order_time]),
+    minute = Time.Minute([order_time]),
+    roundedHour = if minute >= 30 then hour + 1 else hour,
+    adjustedHour = if roundedHour = 0 then 12 else if roundedHour > 12 then roundedHour - 12 else roundedHour,
+    suffix = if roundedHour < 12 then "AM" else "PM",
+    finalHour = if roundedHour = 12 and minute >= 30 then 12 else adjustedHour
+in
+    Text.From(finalHour) & ":00 " & suffix
+
+
+
+
+========================================================================
+
+
+New Measures: 
+
+
+1. Avg Order Value = DIVIDE([Total Revenue],[Total No of Orders])
+
+2. Avg Pizza Per Order = DIVIDE([Total Pizza sold],[Total No of Orders])
+
+3. Total No of Orders = DISTINCTCOUNT('Domino''s'[order_id])
+
+4. Total Pizza sold = SUM('Domino''s'[quantity])
+
+5.Total Revenue = SUM('Domino''s'[total_price])
